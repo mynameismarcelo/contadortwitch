@@ -21,6 +21,10 @@
 
 body {
     background-color: var(--bg-color);
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--text-primary);
     min-height: 100vh;
     display: flex;
@@ -81,21 +85,25 @@ body {
     margin-bottom: 3rem;
 }
 
-.app-header h1 {
-    font-size: 3rem;
-    font-weight: 800;
+.app-header h1.main-title {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 3.5rem;
+    font-weight: 900;
     margin-bottom: 0.5rem;
-    background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(to right, #ffd700 0%, #ff8c00 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-flex;
     align-items: center;
     gap: 1rem;
+    text-shadow: 0px 4px 15px rgba(255, 215, 0, 0.3);
 }
 
-.app-header p {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
+.app-header p.subtitle {
+    color: #e2e8f0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .grid-container {
@@ -236,3 +244,18 @@ body {
 .diff-pesadelo { background: rgba(168, 85, 247, 0.2); color: var(--color-purple); border: 1px solid rgba(168, 85, 247, 0.3); }
 .diff-inferno { background: rgba(249, 115, 22, 0.2); color: var(--color-orange); border: 1px solid rgba(249, 115, 22, 0.3); }
 .diff-tormento { background: rgba(239, 68, 68, 0.2); color: var(--color-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+
+.app-footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.app-footer strong {
+    color: #ffd700;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
