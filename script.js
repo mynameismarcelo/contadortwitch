@@ -1,17 +1,17 @@
 const zones = [
-    { id: '1-1', req: '1', diff: 'Normal', color: 'green' },
-    { id: '1-4', req: '2', diff: 'Normal', color: 'green' },
-    { id: '1-8', req: '3', diff: 'Normal', color: 'green' },
-    { id: '2-3', req: 'Lv15', diff: 'Normal', color: 'green' },
-    { id: '2-8', req: 'Lv20', diff: 'Normal', color: 'green' },
-    { id: '3-8', req: 'Lv30', diff: 'Normal', color: 'green' },
-    { id: '1-9', req: 'Lv40', diff: 'Pesadelo', color: 'purple' },
-    { id: '3-5', req: 'Lv50', diff: 'Pesadelo', color: 'purple' },
-    { id: '2-5', req: 'Lv65', diff: 'Inferno', color: 'orange' },
-    { id: '1-3', req: 'Lv80', diff: 'Tormento', color: 'red' },
+    { id: '1 - 1', req: 'Lv01', diff: 'NORMAL', color: 'green' },
+    { id: '1 - 4', req: 'Lv02', diff: 'NORMAL', color: 'green' },
+    { id: '1 - 8', req: 'Lv03', diff: 'NORMAL', color: 'green' },
+    { id: '2 - 3', req: 'Lv15', diff: 'NORMAL', color: 'green' },
+    { id: '2 - 8', req: 'Lv20', diff: 'NORMAL', color: 'green' },
+    { id: '3 - 8', req: 'Lv30', diff: 'NORMAL', color: 'green' },
+    { id: '1 - 9', req: 'Lv40', diff: 'PESADELO', color: 'purple' },
+    { id: '3 - 5', req: 'Lv50', diff: 'PESADELO', color: 'purple' },
+    { id: '2 - 5', req: 'Lv65', diff: 'INFERNO', color: 'orange' },
+    { id: '1 - 3', req: 'Lv80', diff: 'TORMENTO', color: 'red' },
 ];
 
-const TIMER_DURATION = 13 * 60; // 13 minutes in seconds
+const TIMER_DURATION = 12 * 60; // 12 minutes in seconds
 const timers = {}; // To store the end time of each zone
 let intervals = {}; // To store the interval IDs
 
@@ -41,14 +41,14 @@ function renderZones() {
         
         card.innerHTML = `
             <div class="card-header">
-                <span class="zone-name">${zone.id}</span>
+                <span class="zone-name">Fase ${zone.id}</span>
                 <i class="fa-solid fa-skull skull-icon skull-${zone.color}"></i>
             </div>
             <div class="card-details">
-                <span>Req: ${zone.req}</span>
+                <span>${zone.req}</span>
                 <span class="difficulty-badge ${diffClass}">${zone.diff}</span>
             </div>
-            <div class="timer-display" id="timer-${zone.id}">13:00</div>
+            <div class="timer-display" id="timer-${zone.id}" style="display: none;">12:00</div>
             <div class="progress-bar-container">
                 <div class="progress-bar" id="progress-${zone.id}"></div>
             </div>
@@ -84,7 +84,8 @@ function updateUI(zoneId) {
     
     const endTime = timers[zoneId];
     if (!endTime) {
-        display.textContent = '13:00';
+        display.style.display = 'none';
+        display.textContent = '12:00';
         display.className = 'timer-display';
         progress.style.width = '0%';
         progress.className = 'progress-bar';
@@ -96,6 +97,7 @@ function updateUI(zoneId) {
     const remaining = Math.max(0, Math.floor((endTime - now) / 1000));
     
     if (remaining > 0) {
+        display.style.display = 'block';
         display.textContent = formatTime(remaining);
         display.className = 'timer-display active';
         
@@ -104,6 +106,7 @@ function updateUI(zoneId) {
         progress.className = 'progress-bar';
         card.className = 'zone-card cooldown';
     } else {
+        display.style.display = 'block';
         display.textContent = 'DROP!';
         display.className = 'timer-display ready';
         progress.style.width = '100%';
